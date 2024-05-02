@@ -9,6 +9,6 @@
     "strict": true,
     "esModuleInterop": true
   },
-  "include": ["src/**/*.ts/*.js", "index.d.ts", "index.ts","services/**/*.ts", "types/**/*.ts", "utils/**/*.ts"],
+  "include": ["src/**/*.ts/*.js", "index.d.ts", "index.ts","services/**/*.ts", "types/**/*.ts", "utils/**/*.ts", "types.ts"],
   "exclude": ["node_modules"]
 }

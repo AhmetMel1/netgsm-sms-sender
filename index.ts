@@ -34,8 +34,22 @@ export class NetGsmSMSService {
       method: "POST",
       body: formData,
     })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.error(error));
+      .then((response) => {
+        if (!response.ok) {
+          console.log("Something went wrong!! Error code: ", response.status);
+          const htmlError: Promise<string> = response.text();
+          console.error("HTML Error:", htmlError);
+          throw new Error("Response not OK");
+        }
+
+        return response.text();
+      })
+      .then((responseData: string) => {
+        console.log("Non-JSON Response:", responseData);
+        return responseData;
+      })
+      .catch((err: Error) => {
+        console.error("Error: " + err);
+      });
   }
 }
