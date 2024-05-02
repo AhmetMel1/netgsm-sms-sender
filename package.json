@@ -1,0 +1,20 @@
+{
+  "name": "netgsm-sms-sender",
+  "version": "1.0.1",
+  "description": "Sending SMS using NetGSM.",
+  "main": "index.js",
+  "type": "commonjs",
+  "types": "./index.d.ts",
+  "scripts": {
+    "dev": "ts-node-dev --poll index.ts",
+    "build": "ts-node --esm",
+    "build-ex": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.12.8",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5"
+  }
+}

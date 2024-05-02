@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "typeRoots": ["node_modules/@types"],
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "./dist",
+    "rootDir": "./",
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*.ts/*.js", "index.d.ts", "index.ts","services/**/*.ts", "types/**/*.ts", "utils/**/*.ts"],
+  "exclude": ["node_modules"]
+}
