@@ -7,7 +7,7 @@ export class NetGsmSMSService {
     this.netGsmConfiguration = netGsmConfiguration;
   }
 
-  sendSMS(request: SendSmsRequest): void {
+  async sendSMS(request: SendSmsRequest): Promise<string> {
     const formData = new FormData();
     formData.append("usercode", this.netGsmConfiguration.usercode);
     formData.append("password", this.netGsmConfiguration.password);
@@ -30,26 +30,18 @@ export class NetGsmSMSService {
     if (request.appkey) {
       formData.append("appkey", request.appkey);
     }
-    fetch("https://api.netgsm.com.tr/sms/send/get", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        if (!response.ok) {
-          console.log("Something went wrong!! Error code: ", response.status);
-          const htmlError: Promise<string> = response.text();
-          console.error("HTML Error:", htmlError);
-          throw new Error("Response not OK");
-        }
-
-        return response.text();
-      })
-      .then((responseData: string) => {
-        console.log("Non-JSON Response:", responseData);
-        return responseData;
-      })
-      .catch((err: Error) => {
-        console.error("Error: " + err);
+    try {
+      const response = await fetch("https://api.netgsm.com.tr/sms/send/get", {
+        method: "POST",
+        body: formData,
       });
+      if (!response.ok) {
+        throw new Error("Response not OK");
+      }
+      const responseData = await response.text();
+      return responseData;
+    } catch (err) {
+      throw err;
+    }
   }
 }
